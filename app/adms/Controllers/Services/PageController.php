@@ -1,6 +1,9 @@
 <?php
 
 namespace App\adms\Controllers\Services;
+
+use App\adms\Helpers\ClearUrl;
+
 /**
  * Recebe a URL e manipula a mesma
  * 
@@ -26,6 +29,10 @@ class PageController
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
 
             echo "Acessar o endereço: " . $this->url . "<br><br>";
+
+            //Chamar a classe helper que limpa a URL
+            $this->url = ClearUrl::clearUrl($this->url);
+            var_dump($this->url);
         }else{
             echo "Acessar a página principal <br><br>";
         }

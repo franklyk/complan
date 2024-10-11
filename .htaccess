@@ -1,0 +1,28 @@
+#Ativa o modo REWRITE, que faz a reescrita da URL.
+
+RewriteEngine On
+
+# RewriteCond Define uma condição para uma regra
+# %{REQUEST_FILENAME} É o caminho completo do diretório que atende ao request original, tomando por base o filesystem da máquina, e não relativo a hospedágem
+# RewriteCond %{REQUEST_FILENAME} !-d  Informa que será criada uma condição a ser aplicada ao nome do diretório requisitado. A exclamação e o sinal de negação e o -d pede para verificar a existência de umdiretório fisico EX: SE UM DIRETÓRIO NÃO EXISTE FISICAMENTE
+RewriteCond %{REQUEST_FILENAME} !-d 
+
+#RewriteCond %{REQUEST_FILENAME} !-f Informa que será criada uma condição ao nome do arquivo requisitado. A exclamação e o sinal de negação e o -f pede para verificar a existência de um arquivo fisico EX: SE UM ARQUIVO NÃO EXISTE FISICAMENTE
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#RewriteCond %{REQUEST_FILENAME} !-l Informa que será criada uma condição a ser aplicada ao link simbolico requisitado. A exclamação e o sinal de negação e o -l pede para verificar a existência de um link simbólico EX: SE UM LINK SIMBÓLICO NÃO EXISTE FISICAMENTE
+
+RewriteCond %{REQUEST_FILENAME} !-l
+
+#RewriteRule faz a reescrita da URL 
+#Circunflexo indica o início e o Cifrão indica i fim
+#(.+) pegue todo o conteúdo da URL 
+# index.php?params=$1 Indica para substituir a requisição, redirecionando o fluxo para o index.php e colocando-a inteiramente como um parametro
+#EX: index.php?url=blog/index
+# QSA Significa que se houver uma string de consulta passada con a url original, ela será anexada a reescrita
+#EX: usuarios?usuario=1 será reescrita como index.php?url=usuarios&p=usuario 
+#O sinalizador [L] faz mod_rewrite com que o processamento do conjunto se regras seja interrompido
+
+# Se deseja capturar URLs que contenham pelo menos um caractere, usa-se "+"  (^(.+)$). Se o desejado for capturar todas as URLs inclusive as que estejam vazias usa-se "*" (^(.*)$).
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

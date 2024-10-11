@@ -1,0 +1,16 @@
+{
+    "name": "franklin/complan",
+    "description": "[Curso de PHP Sistema administrativo]",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Franklin",
+            "email": "frsbatist@gmail.com"
+        }
+    ],
+    "require": {}
+}

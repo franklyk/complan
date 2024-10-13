@@ -14,15 +14,16 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 RewriteCond %{REQUEST_FILENAME} !-l
 
-#RewriteRule faz a reescrita da URL 
-#Circunflexo indica o início e o Cifrão indica i fim
-#(.+) pegue todo o conteúdo da URL 
+# RewriteRule faz a reescrita da URL 
+# Circunflexo indica o início e o Cifrão indica i fim
+# (.+) pegue todo o conteúdo da URL 
 # index.php?params=$1 Indica para substituir a requisição, redirecionando o fluxo para o index.php e colocando-a inteiramente como um parametro
-#EX: index.php?url=blog/index
+# EX: index.php?url=blog/index
 # QSA Significa que se houver uma string de consulta passada con a url original, ela será anexada a reescrita
-#EX: usuarios?usuario=1 será reescrita como index.php?url=usuarios&p=usuario 
-#O sinalizador [L] faz mod_rewrite com que o processamento do conjunto se regras seja interrompido
+# EX: usuarios?usuario=1 será reescrita como index.php?url=usuarios&p=usuario 
+# O sinalizador [L] faz mod_rewrite com que o processamento do conjunto se regras seja interrompido
 
-# Se deseja capturar URLs que contenham pelo menos um caractere, usa-se "+"  (^(.+)$). Se o desejado for capturar todas as URLs inclusive as que estejam vazias usa-se "*" (^(.*)$).
+# Se deseja capturar URLs que contenham pelo menos um caractere, usa-se "+"  (^(.+)$). 
+# Se o desejado for capturar todas as URLs inclusive as que estejam vazias usa-se "*" (^(.*)$).
 
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

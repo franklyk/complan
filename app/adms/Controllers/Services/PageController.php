@@ -42,22 +42,22 @@ class PageController
      */
     public function __construct()
     {
-        echo "Carregou!<br><br>";    
+        // echo "Carregou!<br><br>";    
 
         // Verificar se existe valor na variavel url enviada pelo .htaccess 
         if(!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))){
             // Recebe o valorda variavel url enviada pelo .htaccess
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
 
-            echo "Acessar o endereço: " . $this->url . "<br><br>";
+            // echo "Acessar o endereço: " . $this->url . "<br><br>";
 
             //Chamar a classe helper que limpa a URL
             $this->url = ClearUrl::clearUrl($this->url);
-            var_dump($this->url);
+            // var_dump($this->url);
 
             // Converte a string da URL em um array
             $this->urlArray = explode("/", $this->url);
-            var_dump($this->urlArray);
+            // var_dump($this->urlArray);
 
             // Verificar se existe a Controller na URL 
             if(isset($this->urlArray[0])){
@@ -70,14 +70,32 @@ class PageController
 
             // Verificar se existe o parametro na URL 
             if(isset($this->urlArray[1])){
-                $this->urlParameter = $this->urlArray[1];
+                $this->urlParameter = SlugController::slugController($this->urlArray[1]);
             }
 
         }else{
             $this->urlController = SlugController::slugController("Login");
         }
-        var_dump($this->urlController);
-        var_dump($this->urlParameter);
+        // var_dump($this->urlController);
+        // var_dump($this->urlParameter);
+    }
+
+
+    /**
+     * Carregar a pagina/controller 
+     * 
+     * Instainciar a classe foi substituido pelo método estático
+     *
+     * @return void
+     */
+    public function loadPage(): void
+    {
+        // Instanciar a classe para validar e carregar a página/controller
+        $loadPageAdm = new LoadPageAdm();
+
+        // Chamar o método e enviar como parametro a controller e o parametro da URL 
+        $loadPageAdm->loadPageAdm($this->urlController, $this->urlParameter);
+
     }
     
 }

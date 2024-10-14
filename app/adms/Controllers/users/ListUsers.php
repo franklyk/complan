@@ -1,11 +1,11 @@
 <?php
 
-namespace App\adms\Controllers\login;
+namespace App\adms\Controllers\Users;
 
-class Login
+class ListUsers
 {
     public function index()
     {
-        echo "listar Usuários";
+        echo "Listar Usuários";
     }
 }

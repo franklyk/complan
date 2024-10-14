@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 use App\adms\Controllers\Services\PageController;
@@ -10,6 +10,7 @@ require './vendor/autoload.php';
 
 // Instanciar a classe PageController, responsavel em tratar URL
 
-new PageController
+$url = new PageController();
 
-?>
+// Chamar o método para carregar a página/controller
+$url->loadPage();
